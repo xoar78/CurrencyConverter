@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CurrencyConverter.MainPage"
+             x:DataType="viewModels:CViewModel"
+             xmlns:viewModels="clr-namespace:CurrencyConverter.ViewModels;assembly=CurrencyConverter">
+
+
+    <StackLayout Margin="0"  BackgroundColor="#252b2e"  Padding="10">
+        <Label Text="Конвертер валют" HorizontalOptions="Center" FontSize="24" Padding="0, 0, 0, 10" TextColor="White"/>
+
+        <FlexLayout Direction="Row" FlexLayout.Basis="100%" JustifyContent="Start" Padding="0, 0, 0, 10" Margin="0, 0, 0, 20" BackgroundColor="#005885">
+            <Label Text="Дата" FontSize="16" TextColor ="White" VerticalTextAlignment="Center" Padding="8"></Label>
+            <DatePicker Format="dd-MM-yyyy"
+                            TextColor="White"
+                            DateSelected="OnDateSelected">
+            </DatePicker>
+            
+        </FlexLayout>
+
+        <FlexLayout Direction="Row" FlexLayout.Basis="100%" JustifyContent="Start" Padding="0, 0, 0, 10" BackgroundColor="#005885">
+            <Label Text="Валюта" FontSize="16" TextColor ="White" VerticalTextAlignment="Center" Padding="5"></Label>
+            <Frame Padding="5" BackgroundColor="#005885" FlexLayout.Basis="70%" BorderColor="Transparent">
+                <Picker TextColor="White"
+                    ItemsSource="{Binding Currencies}"
+                    ItemDisplayBinding="{Binding ValuteName}"
+                    SelectedItem="{Binding SelectedTopCurrency}"/>
+            </Frame>
+            <Label Text="{Binding SelectedTopCurrency.CharCode}" VerticalTextAlignment="Center" TextColor="White" Padding="5"/>
+        </FlexLayout>
+
+        <FlexLayout Direction="Row" FlexLayout.Basis="100%" JustifyContent="SpaceBetween" Padding="0, 0, 0, 10" Margin="0, 0, 0, 20" BackgroundColor="#005885">
+            <Label Text="Сумма" FontSize="16" TextColor ="White" VerticalTextAlignment="Center" Padding="5"></Label>
+            <Frame Padding="5" BackgroundColor="#005885" FlexLayout.Basis="80%" BorderColor="Transparent">
+                <Entry Keyboard="Numeric" Text="{Binding TopValue}" TextChanged="OnTextChanged" TextColor="White"></Entry>
+            </Frame>
+        </FlexLayout>
+
+        <FlexLayout Direction="Row" FlexLayout.Basis="100%" JustifyContent="Start" Padding="0, 0, 0, 10" BackgroundColor="#005885">
+            <Label Text="Валюта" FontSize="16" TextColor ="White" VerticalTextAlignment="Center" Padding="5"></Label>
+            <Frame Padding="5" BackgroundColor="#005885" FlexLayout.Basis="70%" BorderColor="Transparent">
+                <Picker TextColor="White"
+                        ItemsSource="{Binding Currencies}"
+                        ItemDisplayBinding="{Binding ValuteName}"
+                        SelectedItem="{Binding SelectedBottomCurrency}"/>
+            </Frame>
+            <Label Text="{Binding SelectedBottomCurrency.CharCode}" TextColor="White" VerticalTextAlignment="Center" Padding="5"/>
+        </FlexLayout>
+
+        <FlexLayout Direction="Row" FlexLayout.Basis="100%" JustifyContent="SpaceBetween" Padding="0, 0, 0, 10" BackgroundColor="#005885">
+            <Label Text="Сумма" FontSize="16" TextColor ="White" VerticalTextAlignment="Center" Padding="5"></Label>
+            <Frame Padding="5" BackgroundColor="#005885" FlexLayout.Basis="80%" BorderColor="Transparent">
+                <Entry Keyboard="Numeric" Text="{Binding BottomValue}" TextChanged="OnTextChanged" TextColor="White"></Entry>
+            </Frame>
+        </FlexLayout>
+    </StackLayout>
+
+</ContentPage>
